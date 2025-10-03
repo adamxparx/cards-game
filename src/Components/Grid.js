@@ -12,7 +12,7 @@ export default function BasicGrid() {
 export function CardsContainerGrid(props) {
     return (
         <Grid container size={6} sx={{ border: "1px solid red", padding: "10px" }}>
-            <CardsGrid />
+            <CardsGrid img={"/home/leon/Desktop/cards-game/src/Deck/2_of_clubs.png"}/>
             <CardsGrid />
             <CardsGrid />
             <PlayerGrid player={props.player}/>
@@ -20,10 +20,10 @@ export function CardsContainerGrid(props) {
     );
 }
 
-export function CardsGrid() {
+export function CardsGrid(props) {
     return (
         <Grid container size={4} sx={{ height: "280px", border: "1px solid black" }}>
-            
+            <img src={props.img} />
         </Grid>
     );
 }

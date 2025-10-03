@@ -1,0 +1,24 @@
+.App {
+  display: block;
+  justify-items: center;
+  height: 100vh;
+  align-content: center;
+  text-align: center;
+}
+
+.App button {
+  width: 1000px;
+  height: 30px;
+  margin-top: 10px;
+  background-color: #00f;
+  color: white;
+}
+
+.App button:hover {
+  cursor: pointer;
+  background-color: #33f;
+}
+
+.Player {
+  text-align: center;
+}

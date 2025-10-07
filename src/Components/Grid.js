@@ -1,21 +1,62 @@
 import { Grid } from "@mui/material";
+import card from '../card.png';
 
-export default function BasicGrid() {
+export default function BasicGrid(props) {
     return (
         <Grid container sx={{ height: "500px", width: "1000px", border: "1px solid black" }}>
-            <CardsContainerGrid player={1} />
-            <CardsContainerGrid player={2}/>
+            <PlayerCardsGrid playerCards={props.playerCards} player={"You"} score={props.playerScore}/>
+            <ComputerCardsGrid computerCards={props.computerCards} player={"Computer"} score={props.computerScore} />
         </Grid>
     );
 }
 
-export function CardsContainerGrid(props) {
+export function PlayerCardsGrid(props) {
+    const importAll = (r) => {
+    return r
+        .keys()
+        .sort((a, b) => {
+            const numA = parseInt(a.match(/\d+/)[0]);
+            const numB = parseInt(b.match(/\d+/)[0]);
+            return numA - numB;
+        })
+        .map(r);
+    };
+
+    let cards = importAll(require.context('../Deck', false, /\.(png|jpe?g|svg)$/));
+
+    cards = [...cards, card];
+
     return (
         <Grid container size={6} sx={{ border: "1px solid red", padding: "10px" }}>
-            <CardsGrid img={"/home/leon/Desktop/cards-game/src/Deck/2_of_clubs.png"}/>
-            <CardsGrid />
-            <CardsGrid />
-            <PlayerGrid player={props.player}/>
+            {props.playerCards.map((index, _) => (
+                <CardsGrid img={cards[index]} />
+            ))}
+            <PlayersGrid score={props.score} player={props.player}/>
+        </Grid>
+    );
+}
+
+export function ComputerCardsGrid(props) {    
+    const importAll = (r) => {
+    return r
+        .keys()
+        .sort((a, b) => {
+            const numA = parseInt(a.match(/\d+/)[0]);
+            const numB = parseInt(b.match(/\d+/)[0]);
+            return numA - numB;
+        })
+        .map(r);
+    };
+
+    let cards = importAll(require.context('../Deck', false, /\.(png|jpe?g|svg)$/));
+    cards = [...cards, card];
+
+    return (
+        <Grid container size={6} sx={{ border: "1px solid red", padding: "10px" }}>
+            {props.computerCards.map((index, _) => (
+                <CardsGrid img={cards[index]} />
+            ))}
+            <PlayersGrid score={props.score} player={props.player}/>
         </Grid>
     );
 }
@@ -23,15 +64,15 @@ export function CardsContainerGrid(props) {
 export function CardsGrid(props) {
     return (
         <Grid container size={4} sx={{ height: "280px", border: "1px solid black" }}>
-            <img src={props.img} />
+            <img className="card-image" src={props.img} />
         </Grid>
     );
 }
 
-export function PlayerGrid(props) {
+export function PlayersGrid(props) {
     return (
         <Grid size={12} sx={{ border: "1px solid blue" }}>
-            <h1 className="Player">Player {props.player}: </h1>
+            <h1 className="Player">{props.player}: {props.score}</h1>
         </Grid>
     );
 }

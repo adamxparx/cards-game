@@ -22,3 +22,7 @@
 .Player {
   text-align: center;
 }
+
+.card-image {
+  width: 100%;
+}

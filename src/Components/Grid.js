@@ -27,7 +27,7 @@ export function PlayerCardsGrid(props) {
     cards = [...cards, card];
 
     return (
-        <Grid container size={6} sx={{ border: "1px solid red", padding: "10px" }}>
+        <Grid container spacing={1} size={6} sx={{ border: "1px solid red", padding: "10px" }}>
             {props.playerCards.map((index, _) => (
                 <CardsGrid img={cards[index]} />
             ))}
@@ -52,7 +52,7 @@ export function ComputerCardsGrid(props) {
     cards = [...cards, card];
 
     return (
-        <Grid container size={6} sx={{ border: "1px solid red", padding: "10px" }}>
+        <Grid container spacing={1} size={6} sx={{ border: "1px solid red", padding: "10px" }}>
             {props.computerCards.map((index, _) => (
                 <CardsGrid img={cards[index]} />
             ))}
@@ -63,7 +63,7 @@ export function ComputerCardsGrid(props) {
 
 export function CardsGrid(props) {
     return (
-        <Grid container size={4} sx={{ height: "280px", border: "1px solid black" }}>
+        <Grid container size={4} sx={{ height: "280px" }}>
             <img className="card-image" src={props.img} />
         </Grid>
     );

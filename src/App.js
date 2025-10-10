@@ -5,6 +5,7 @@ import BasicGrid from './Components/Grid';
 function App() {
 
   const initialCards = [52, 52, 52];
+
   const [playerCard, setPlayerCard] = useState(initialCards);
   const [computerCard, setComputerCard] = useState(initialCards);
   const [PlayerTotalScore, setPlayerTotalScore] = useState(0);
@@ -56,7 +57,13 @@ function App() {
   return (
     <div className="App">
       <h1>Three Cards</h1>
-      <BasicGrid playerCards={playerCard} playerScore={PlayerTotalScore} computerCards={computerCard} computerScore={computerTotalScore}/>
+      
+      <BasicGrid 
+        playerCards={playerCard} 
+        playerScore={PlayerTotalScore} 
+        computerCards={computerCard} 
+        computerScore={computerTotalScore}/>
+
       <button onClick={handleOnclick}>DRAFT CARDS</button>
     </div>
   );
